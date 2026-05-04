@@ -1,8 +1,6 @@
 import streamlit as st
 from transformers import pipeline
 from PIL import Image
-import numpy as np
-import io
 import soundfile as sf
  
  
@@ -17,28 +15,16 @@ import soundfile as sf
 # text2story
 def text2story(text):
     story_generator = pipeline("text-generation", model="pranavpsv/genre-story-generator-v2")
-    prompt = f"Write a short story for a 3 to 10-year-old kid about: {text}."
-    output = story_generator(prompt, max_new_tokens=100, min_new_tokens=40)[0]["generated_text"]
+    prompt = f"Write a short story for a 3 to 10-year-old kid about: {text}. The story should be sweet and simple."
+    output = story_generator(prompt, max_new_tokens=100, min_new_tokens=50)[0]["generated_text"]
     story_text = output[len(prompt):].strip()
     return story_text
  
  
 # text2audio
-def text2audio(story_text):
-    tts = pipeline("text-to-speech", model="Matthijs/mms-tts-eng")
-    result = tts(story_text)
- 
-    # convert numpy array to WAV bytes so st.audio() can play it
-    audio_array = np.array(result["audio"])
-    if audio_array.dtype != np.int16:
-        audio_array = (audio_array / np.max(np.abs(audio_array)) * 32767).astype(np.int16)
-    if audio_array.ndim > 1:
-        audio_array = audio_array[0]
- 
-    buf = io.BytesIO()
-    scipy.io.wavfile.write(buf, result["sampling_rate"], audio_array)
-    buf.seek(0)
-    audio_data = buf.read()
+def text2audio(story_text): 
+    audio_generator = pipeline("text-to-audio", model="Matthijs/mms-tts-eng")
+    audio_data = audio_generator(_story_text)
     return audio_data
  
  
