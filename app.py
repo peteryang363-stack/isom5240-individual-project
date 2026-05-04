@@ -21,10 +21,11 @@ def text2story(text):
     return story_text
 
 # text2audio
-def text2audio(story_text):
-    audio_data = pipeline("text-to-speech", model="Matthijs/mms-tts-eng")
+ def text2audio(story_text):
+    audio_pipe = pipeline("text-to-audio", model="Matthijs/mms-tts-eng")
+    audio_data = audio_pipe(story_text)
     return audio_data
- 
+  
 # main part
 st.title("Kids Story Generator")
  
@@ -43,5 +44,5 @@ if uploaded_file and st.button("Generate Story"):
     st.write(f"Story: {story}")
  
     st.write("3. Generating audio...")
-    audio = text2audio(story)
-    st.audio(audio, format="audio/wav")
+    audio_data = text2audio(story)
+    st.audio(audio_data["audio"], sample_rate=audio_data["sampling_rate"])
