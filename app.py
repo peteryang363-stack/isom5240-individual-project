@@ -17,7 +17,16 @@ def text2story(text):
     prompt = f"Write a 50 to 100-word short story for a 3 to 10-year-old kid about: {text}. The story should be sweet and simple."
     output = story_generator(prompt, max_new_tokens=120, min_new_tokens=40)[0]['generated_text']
     story_text = output[len(prompt):].strip()
-    return story_text
+    import re
+    sentences = re.split(r'(?<=[.!?])\s+', story_text)
+    result = ""
+    for sentence in sentences:
+        if len((result + " " + sentence).split()) <= 100:
+            result += " " + sentence
+        else:
+            break
+    
+    return result.strip()
 
 # text2audio
 def text2audio(story_text):
