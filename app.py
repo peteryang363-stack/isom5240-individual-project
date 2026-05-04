@@ -12,7 +12,7 @@ def img2text(url):
     return text
 
 # text2story
-def text2story(text 
+def text2story(text):
     story_generator = pipeline("text-generation", model="Qwen/Qwen2.5-0.5B-Instruct")
     prompt = f"Write a 50 to 100-word short story for a 3 to 10-year-old kid about: {text}. The story should be sweet and simple."
     output = story_generator(prompt, max_new_tokens=200, min_new_tokens=40)[0]['generated_text']
