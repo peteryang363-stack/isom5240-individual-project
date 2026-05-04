@@ -1,6 +1,6 @@
 import streamlit as st
 from transformers import pipeline
-import soundfile as sf
+from PIL import Image
  
  
 # function part
@@ -20,7 +20,7 @@ def text2story(text):
     return story_text
 
 # text2audio
- def text2audio(story_text):
+def text2audio(story_text):
     audio_pipe = pipeline("text-to-audio", model="Matthijs/mms-tts-eng")
     audio_data = audio_pipe(story_text)
     return audio_data
