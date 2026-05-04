@@ -9,11 +9,10 @@ import soundfile as sf
 # function part
  
 # img2text
-def img2text(url):
+ def img2text(url):
     image_to_text_model = pipeline("image-to-text", model="Salesforce/blip-image-captioning-base")
     text = image_to_text_model(url)[0]["generated_text"]
     return text
- 
  
 # text2story
 def text2story(text):
