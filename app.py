@@ -21,7 +21,7 @@ def text2story(text):
     return story_text
 
 # text2audio
- def text2audio(story_text):
+def text2audio(story_text):
     audio_data = pipeline("text-to-audio", model="Matthijs/mms-tts-eng")
     return audio_data
  
