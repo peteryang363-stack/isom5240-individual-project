@@ -15,7 +15,7 @@ def img2text(url):
 def text2story(text):
     story_generator = pipeline("text-generation", model="pranavpsv/genre-story-generator-v2")
     prompt = f"Write a 50 to 100-word short story for a 3 to 10-year-old kid about: {text}. The story should be sweet and simple."
-    output = story_generator(prompt, max_new_tokens=80, min_new_tokens=40)[0]['generated_text']
+    output = story_generator(prompt, max_new_tokens=100, min_new_tokens=40)[0]['generated_text']
     story_text = output[len(prompt):].strip()
     return story_text
 
@@ -36,7 +36,7 @@ if uploaded_file and st.button("Generate Story"):
  
     st.write("1. Extracting caption from image...")
     text = img2text(image)
-    st.write(f"Caption: {text}")
+    st.write(f"Scenarios: {text}")
  
     st.write("2. Generating story...")
     story = text2story(text)
