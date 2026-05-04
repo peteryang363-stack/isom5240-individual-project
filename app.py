@@ -7,13 +7,13 @@ from PIL import Image
  
 # img2text
 def img2text(url):
-    image_to_text_model = pipeline("image-to-text", model="deepseek-ai/DeepSeek-V4-Flash")
+    image_to_text_model = pipeline("image-to-text", model="Salesforce/blip-image-captioning-base")
     text = image_to_text_model(url)[0]["generated_text"]
     return text
 
 # text2story
 def text2story(text):
-    story_generator = pipeline("text-generation", model="microsoft/phi-2")
+    story_generator = pipeline("text-generation", model="deepseek-ai/DeepSeek-V4-Flash")
     prompt = f"Write a 50 to 100-word short story for a 3 to 10-year-old kid about: {text}. The story should be sweet and simple."
     output = story_generator(prompt, max_new_tokens=200, min_new_tokens=40)[0]['generated_text']
     story_text = output[len(prompt):].strip()
