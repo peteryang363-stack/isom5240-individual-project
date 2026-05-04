@@ -26,7 +26,7 @@ def text2audio(story_text):
     return audio_data
   
 # main part
-st.title("Kids Story Generator")
+st.subheader("Kids Story Generator")
  
 uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
  
