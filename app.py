@@ -26,7 +26,9 @@ def text2audio(story_text):
     return audio_data
   
 # main part
-st.subheader("Kids Story Generator")
+# Set up the page
+st.set_page_config(page_title="Text to Audio Story", page_icon="🦄")
+st.header("Turn Your Text into an Audio Story")
  
 uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
  
