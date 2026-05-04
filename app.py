@@ -16,7 +16,7 @@ def img2text(url):
 def text2story(text):
     story_generator = pipeline("text-generation", model="pranavpsv/genre-story-generator-v2")
     prompt = f"Write a short story for a 3 to 10-year-old kid about: {text}. The story should be sweet and simple."
-    story_text = story_generator(prompt, max_length=100, min_length=50)[0]['generated_text']
+    output = story_generator(prompt, max_length=100, min_length=50)[0]['generated_text']
     story_text = output[len(prompt):].strip()
     return story_text
 
