@@ -7,26 +7,23 @@ import soundfile as sf
 # function part
  
 # img2text
- def img2text(url):
+def img2text(url):
     image_to_text_model = pipeline("image-to-text", model="Salesforce/blip-image-captioning-base")
     text = image_to_text_model(url)[0]["generated_text"]
     return text
- 
+
 # text2story
 def text2story(text):
     story_generator = pipeline("text-generation", model="pranavpsv/genre-story-generator-v2")
     prompt = f"Write a short story for a 3 to 10-year-old kid about: {text}. The story should be sweet and simple."
-    output = story_generator(prompt, max_new_tokens=100, min_new_tokens=50)[0]["generated_text"]
-    story_text = output[len(prompt):].strip()
+    story_text = story_generator(prompt, max_length=100, min_length=50)[0]['generated_text']
     return story_text
- 
- 
+
 # text2audio
-def text2audio(story_text): 
-    audio_generator = pipeline("text-to-audio", model="Matthijs/mms-tts-eng")
-    audio_data = audio_generator(_story_text)
+def text2audio(story_text):
+    audio_generator = pipeline("text-to-speech", model="Matthijs/mms-tts-eng")
+    audio_data = audio_generator(story_text)
     return audio_data
- 
  
 # main part
 st.title("Kids Story Generator")
