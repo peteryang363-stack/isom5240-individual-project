@@ -7,7 +7,7 @@ from PIL import Image
  
 # img2text
 def img2text(url):
-    image_to_text_model = pipeline("image-to-text", model="Salesforce/blip-image-captioning-base")
+    image_to_text_model = pipeline("image-to-text", model="deepseek-ai/DeepSeek-V4-Flash")
     text = image_to_text_model(url)[0]["generated_text"]
     return text
 
