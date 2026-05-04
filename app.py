@@ -30,20 +30,20 @@ def text2audio(story_text):
 st.set_page_config(page_title="Text to Audio Story", page_icon="🦄")
 st.header("🪄Turn Your Text into an Audio Story")
  
-uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
+uploaded_file = st.file_uploader("📸Upload an image", type=["jpg", "jpeg", "png"])
  
-if uploaded_file and st.button("Generate Story"):
+if uploaded_file and st.button("✨Generate Story"):
     image = Image.open(uploaded_file)
     st.image(image, width=300)
  
-    st.write("1. Extracting caption from image...")
+    st.write("🔍 Looking at your picture...")
     text = img2text(image)
     st.write(f"Scenarios: {text}")
  
-    st.write("2. Generating story...")
+    st.write("📝 Writing your story...")
     story = text2story(text)
     st.write(f"Story: {story}")
  
-    st.write("3. Generating audio...")
+    st.write("🎙️ Recording the story...")
     audio_data = text2audio(story)
     st.audio(audio_data["audio"], sample_rate=audio_data["sampling_rate"])
