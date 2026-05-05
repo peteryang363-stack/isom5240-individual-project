@@ -1,7 +1,28 @@
 import streamlit as st
 from transformers import pipeline
 from PIL import Image
- 
+
+st.markdown("""
+<style>
+/* 页面背景颜色 */
+[data-testid="stAppViewContainer"] {
+    background-color: #FFF9C4;
+}
+
+/* 按钮颜色 */
+.stButton > button {
+    background-color: #FF6B6B;
+    color: white;
+    border-radius: 20px;
+    font-size: 1.2rem;
+}
+
+/* 文字颜色 */
+[data-testid="stMarkdownContainer"] {
+    color: #333333;
+}
+</style>
+""", unsafe_allow_html=True)
  
 # function part
  
