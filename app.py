@@ -37,11 +37,11 @@ if uploaded_file and st.button("✨Generate Story"):
  
     st.write("🔍 Looking at your picture...")
     text = img2text(image)
-    st.write(f"Scenarios: {text}")
+    st.info(f"Scenarios: {text}")
  
     st.write("📝 Writing your story...")
     story = text2story(text)
-    st.write(f"Story: {story}")
+    st.success(f"Story: {story}")
  
     st.write("🎙️ Recording the story...")
     audio_data = text2audio(story)
